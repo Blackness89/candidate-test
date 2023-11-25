@@ -4,32 +4,47 @@ import UserTable from './components/UserTable.vue';
 </script>
 
 <template>
-  <div class="pt-6 w-full">
+  <div>
   
-    <h1 class="w-full pd-2 ">This is an imported table from Tailwindcss</h1> 
+    <h1 class="mod">Junior Front-End developer test</h1> 
   </div>
-  <div class="w-full place-items-center border bg-border-black p-2">
+  <div >
     <UserTable />
   </div>
   
 
 </template>
 
-<style scoped>
+<style>
+
+
 
 body{
-  background-color: orangered;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: lightcyan;
+  min-height: 100vh;
 }
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.mod{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.tables{
+  border: 1px;
+  border-color: black;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+.head-list{
+  text-decoration-line: underline;
 }
+.all-label{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 5px;
+  border: 1px;
+}
+
 </style>

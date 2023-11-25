@@ -2,11 +2,14 @@
 <script>
 
 export default {
-  data() {
+    data() {
     return {
-      users: [],
-    }
-  },
+        users: [],
+        selectedBloodGroup: '',
+		selectedHairColor: '',
+        search: '',
+    };
+},
     mounted() {
     
 
@@ -22,56 +25,65 @@ export default {
 
             this.users = data.users;
             
+            
+            
             } catch (error) {
             console.error('Error fetching data', error);
         }
         
     },
 },
+
+computed: {
+    bloodGroupOptions() {
+      // get unique blood group values from users
+    return Array.from(new Set(this.users.map(user => user.bloodGroup)));
+    },
+    hairColorOptions() {
+      // get unique hair color values from users
+    return Array.from(new Set(this.users.map(user => user.hair)));
+    },
+},
+
 }
 
 </script>
 
 
+
+
 <template>
-    <div> Select your searching preference
-        <div class="flex pr-3">
-        <label for="dropdown">Select</label>
-    <select id="dropdown" v-model="selectedOption">
-        <option value="option1">FirstName</option>
-        <option value="option2">LastName</option>
-        <option value="option3">Email</option>
-        <option value="option4">Phone</option>
-        <option value="option5">Department</option>
-        <option value="option6">City</option>
+    <div class="all-label">
+    <!-- Dropdown filters -->
+    <label for="bloodGroup">Blood Group:</label>
+    <select v-model="selectedBloodGroup" id="bloodGroup">
+        <option v-for="option in bloodGroupOptions" :key="option" :value="option">
+        {{ option }}
+        </option>
     </select>
 
-    <label for="dropdown">Select</label>
-    <select id="dropdown" v-model="selectedOption">
-        <option value="option1">FirstName</option>
-        <option value="option2">LastName</option>
-        <option value="option3">Email</option>
-        <option value="option4">Phone</option>
-        <option value="option5">Department</option>
-        <option value="option6">City</option>
+    <label for="hairColor">Hair Color:</label>
+    <select v-model="selectedHairColor" id="hairColor">
+        <option v-for="option in hairColorOptions" :key="user" :value="hair">
+        {{ option }}
+        </option>
     </select>
 
-    <label for="dropdown">Select</label>
-    <select id="dropdown" v-model="selectedOption">
-        <option value="option1">FirstName</option>
-        <option value="option2">LastName</option>
-        <option value="option3">Email</option>
-        <option value="option4">Phone</option>
-        <option value="option5">Department</option>
-        <option value="option6">City</option>
-    </select>
+    <!-- Search input -->
+    <input v-model="search" placeholder="Search...">
 
+    <table class="table-auto">
+
+    </table>
     </div>
-    </div>
+
+
+
+
     <div>
-    <table class="flex flex-auto place-content-center">
+    <table >
         <thead>
-        <tr>
+        <tr class="head-list">
             <th>FirstName</th>
             <th>LastName</th>
             <th>Email</th>
@@ -99,3 +111,5 @@ export default {
     </table>
     </div>
 </template>
+
+
